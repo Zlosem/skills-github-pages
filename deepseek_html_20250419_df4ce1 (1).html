@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Поддержать проект</title>
+    <style>
+        /* Общие стили */
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #1a1a1a;
+            font-family: Arial, sans-serif;
+            position: relative;
+        }
+
+        /* Контейнер для кнопок */
+        .buttons-container {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            z-index: 1;
+        }
+
+        /* Стили кнопки доната (из первого примера) */
+        .donate-btn {
+            padding: 25px 50px;
+            font-size: 28px;
+            background: linear-gradient(45deg, #FF5722, #FF9800);
+            color: white;
+            border: none;
+            border-radius: 15px;
+            cursor: pointer;
+            box-shadow: 0 8px 25px rgba(255, 87, 34, 0.3);
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        /* Стили кнопки Telegram (из третьего примера) */
+        .tg-btn {
+            padding: 25px 50px;
+            font-size: 28px;
+            background: linear-gradient(45deg, #2AABEE, #229ED9);
+            color: white;
+            border: none;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            box-shadow: 0 8px 25px rgba(42, 171, 238, 0.3);
+        }
+
+        /* Общие эффекты для кнопок */
+        .donate-btn:hover, .tg-btn:hover {
+            transform: translateY(-3px);
+            filter: brightness(1.1);
+        }
+
+        .donate-btn:active, .tg-btn:active {
+            transform: translateY(0) scale(0.95);
+        }
+
+        /* Иконки */
+        .btn-icon {
+            width: 40px;
+            height: 40px;
+            transition: transform 0.3s;
+        }
+
+        .donate-btn:hover .btn-icon {
+            transform: rotate(20deg) scale(1.2);
+        }
+
+        .tg-btn:hover .btn-icon {
+            transform: rotate(360deg) scale(1.2);
+        }
+
+        /* Рекламные баннеры (из второго примера) */
+        .ad-container {
+            position: fixed;
+            background: rgba(255,255,255,0.1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 2px dashed #fff;
+            animation: pulse 2s infinite;
+        }
+
+        .ad-placeholder {
+            color: rgba(255,255,255,0.3);
+            font-size: 1.2em;
+            text-align: center;
+            padding: 15px;
+            text-transform: uppercase;
+        }
+
+        .banner-top { top: 20px; width: 728px; height: 90px; }
+        .banner-side { width: 160px; height: 600px; top: 50%; transform: translateY(-50%); }
+        .banner-left { left: 20px; }
+        .banner-right { right: 20px; }
+        .banner-bottom { bottom: 20px; width: 468px; height: 60px; }
+
+        @keyframes pulse {
+            0% { opacity: 0.6; }
+            50% { opacity: 1; }
+            100% { opacity: 0.6; }
+        }
+
+        @media (max-width: 768px) {
+            .banner-side, .banner-top { display: none; }
+            .banner-bottom { width: 320px; height: 50px; }
+            .buttons-container { gap: 20px; }
+            .donate-btn, .tg-btn {
+                padding: 20px 40px;
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Рекламные баннеры -->
+    <div class="ad-container banner-top">
+        <div class="ad-placeholder">Реклама 728x90</div>
+    </div>
+    <div class="ad-container banner-side banner-left">
+        <div class="ad-placeholder">Реклама 160x600</div>
+    </div>
+    <div class="ad-container banner-side banner-right">
+        <div class="ad-placeholder">Реклама 160x600</div>
+    </div>
+    <div class="ad-container banner-bottom">
+        <div class="ad-placeholder">Реклама 468x60</div>
+    </div>
+
+    <!-- Контейнер с кнопками -->
+    <div class="buttons-container">
+        <button class="donate-btn" id="donateButton">
+            <svg class="btn-icon" viewBox="0 0 24 24" fill="white">
+                <path d="M12 1.5C6.21 1.5 1.5 6.21 1.5 12S6.21 22.5 12 22.5 22.5 17.79 22.5 12 17.79 1.5 12 1.5zm.75 15.6h-1.5V15h1.5v2.1zm0-3.6h-1.5V8.4h1.5V13.5z"/>
+            </svg>
+            Поддержать проект
+        </button>
+
+        <button class="tg-btn" id="tgButton">
+            <svg class="btn-icon" viewBox="0 0 24 24" fill="white">
+                <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.14.14-.26.26-.428.26l.213-3.05 5.56-5.022c.24-.213-.054-.334-.373-.121l-6.86 4.326-2.96-.924c-.64-.203-.658-.64.135-.954l11.57-4.458c.538-.196 1.006.128.832.941z"/>
+            </svg>
+            Написать в Telegram
+        </button>
+    </div>
+
+    <script>
+        // DonationAlerts
+        const daLink = "https://www.donationalerts.com/r/Zlosam";
+        document.getElementById('donateButton').addEventListener('click', () => {
+            window.open(daLink, '_blank');
+        });
+
+        // Telegram
+        const tgLink = "https://t.me/Zlosem";
+        document.getElementById('tgButton').addEventListener('click', () => {
+            window.open(tgLink, '_blank');
+        });
+
+        // Анимация баннеров
+        setInterval(() => {
+            document.querySelectorAll('.ad-container').forEach(banner => {
+                if(Math.random() > 0.7) {
+                    banner.style.backgroundColor = `rgba(${Math.random()*255},${Math.random()*255},${Math.random()*255},0.1)`;
+                }
+            });
+        }, 3000);
+    </script>
+</body>
+</html>
